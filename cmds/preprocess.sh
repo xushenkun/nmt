@@ -2,10 +2,11 @@
 
 current_dir=`dirname $0`
 
-sh $current_dir/envpath.sh
+. $current_dir/env_vars
 
 #corpus train
 cd $corpus_home
+pwd
 unzip datum2017.zip
 cd datum2017
 cat Book1_cn.txt Book2_cn.txt Book3_cn.txt Book4_cn.txt Book5_cn.txt Book6_cn.txt Book7_cn.txt Book8_cn.txt Book9_cn.txt Book10_cn.txt > $corpus_home/train.zh

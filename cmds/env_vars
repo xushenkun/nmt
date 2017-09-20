@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#global toolkit
+moses_scripts=/application/search/tf/gnmt/mosesdecoder/scripts
+bpe_home=/application/search/tf/gnmt/subword-nmt
+nmt_home=/application/search/tf/gnmt/nmt_git_12
+device=cuda  #cpu #gpu2
+
+#language-pair
+src=zh
+tgt=en
+model_pair=${src}_${tgt}
+jieba_home=/application/search/tf/gnmt/jieba
+corpus_home=/application/search/tf/gnmt/corpus/${model_pair}
+modles_home=/application/search/tf/gnmt/models/${model_pair}
+bpe_operations=90000
+bpe_threshold=10

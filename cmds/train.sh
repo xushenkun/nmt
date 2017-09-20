@@ -2,7 +2,7 @@
 
 current_dir=`dirname $0`
 
-sh $current_dir/envpath.sh
+. $current_dir/env_vars
 
 export arch="standard"
 
