@@ -9,8 +9,9 @@ export device=cuda  #cpu #gpu2
 #language-pair
 export src=zh
 export tgt=en
+export model_pair=${src}_${tgt}
 export jieba_home=/application/search/tf/gnmt/jieba
-export corpus_home=/application/search/tf/gnmt/corpus/en_zh
-export modles_home=/application/search/tf/gnmt/models/en_zh
+export corpus_home=/application/search/tf/gnmt/corpus/${model_pair}
+export modles_home=/application/search/tf/gnmt/models/${model_pair}
 export bpe_operations=90000
 export bpe_threshold=10
