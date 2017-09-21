@@ -54,8 +54,7 @@ echo "make bpe for corpus..."
 $bpe_home/learn_joint_bpe_and_vocab.py -i $corpus_home/train.tc.zh $corpus_home/train.tc.en --write-vocabulary $corpus_home/vocab.zh $corpus_home/vocab.en -s $bpe_operations -o $modles_home/zhen.bpe
 for prefix in train newsdev2017 newstest2017
  do
-  export PYTHONPATH=$jieba_home
-  $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.zh --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.zh | python3 -m jieba -d > $corpus_home/$prefix.bpe.zh
+  $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.zh --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.zh > $corpus_home/$prefix.bpe.zh
   $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.en --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.en > $corpus_home/$prefix.bpe.en
  done
 
