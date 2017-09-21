@@ -4,8 +4,8 @@ current_dir=`dirname $0`
 
 . $current_dir/env_vars
 
-arch="gnmt_v2"
-encoder_type="gnmt"
+arch="standard"  #standard, gnmt, gnmt_v2
+encoder_type="bi" #uni, bi, gnmt
 layer=8
 unit=512
 
