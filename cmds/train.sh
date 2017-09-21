@@ -4,9 +4,9 @@ current_dir=`dirname $0`
 
 . $current_dir/env_vars
 
-export arch="standard"
+arch="standard"
 
-export model_name="SGD_BPE_B10_L4_N512_"${arch}
+model_name="SGD_BPE_B10_L4_N512_"${arch}
 
 mkdir $modles_home/${model_name}
 
