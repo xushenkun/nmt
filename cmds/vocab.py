@@ -17,5 +17,5 @@ for line in sys.stdin:
         c[word] += 1
 
 for key,f in sorted(c.items(), key=lambda x: x[1], reverse=True):
-    if f >= min_freq:
+    if f >= min_freq and not f.isdigit():
         print(key)
