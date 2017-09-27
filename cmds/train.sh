@@ -8,7 +8,7 @@ arch="standard"  #standard, gnmt, gnmt_v2
 encoder_type="bi" #uni, bi, gnmt
 layer=8
 unit=512
-num_gpus=3
+num_gpus=4
 
 if [ "$use_bpe" = "1" ]; then
 model_name="SGD_BPE_B10_L"${layer}"_N"${unit}"_"${arch}"_"${encoder_type}
