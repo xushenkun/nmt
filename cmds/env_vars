@@ -16,4 +16,4 @@ modles_home=/application/search/tf/gnmt/models/casict2015/${model_pair}
 use_bpe="0"
 bpe_operations=90000 #10000
 bpe_threshold=2 #10
-vocab_min_freq=15
+vocab_min_freq=12
