@@ -54,6 +54,11 @@ for prefix in newsdev2017 newstest2017
   $moses_scripts/recaser/truecase.perl -model $modles_home/truecase-model.en < $corpus_home/$prefix.tok.en > $corpus_home/$prefix.tc.en
  done
 
+if [ "$use_bpe" = "0" ]; then
+  echo "preprocess over!"
+  exit 0
+fi
+
 echo "make bpe for corpus..."
 $bpe_home/learn_joint_bpe_and_vocab.py -i $corpus_home/train.tc.zh $corpus_home/train.tc.en --write-vocabulary $corpus_home/vocab.zh $corpus_home/vocab.en -s $bpe_operations -o $modles_home/zhen.bpe
 for prefix in train newsdev2017 newstest2017
