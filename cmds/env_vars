@@ -7,11 +7,11 @@ nmt_home=/application/search/tf/gnmt/nmt_git_12
 device=cuda  #cpu #gpu2
 
 #language-pair
-src=en
-tgt=zh
+src=zh
+tgt=en
 model_pair=${src}_${tgt}
 jieba_home=/application/search/tf/gnmt/jieba
-corpus_home=/application/search/tf/gnmt/corpus/${model_pair}
-modles_home=/application/search/tf/gnmt/models/${model_pair}
+corpus_home=/application/search/tf/gnmt/corpus/casict2015/${model_pair}
+modles_home=/application/search/tf/gnmt/models/casict2015/${model_pair}
 bpe_operations=90000
 bpe_threshold=10

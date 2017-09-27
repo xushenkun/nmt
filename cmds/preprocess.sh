@@ -7,10 +7,14 @@ current_dir=`dirname $0`
 echo "prepare corpus train..."
 cd $corpus_home
 pwd
-unzip datum2017.zip
-cd datum2017
-cat Book1_cn.txt Book2_cn.txt Book3_cn.txt Book4_cn.txt Book5_cn.txt Book6_cn.txt Book7_cn.txt Book8_cn.txt Book9_cn.txt Book10_cn.txt > $corpus_home/train.zh
-cat Book1_en.txt Book2_en.txt Book3_en.txt Book4_en.txt Book5_en.txt Book6_en.txt Book7_en.txt Book8_en.txt Book9_en.txt Book10_en.txt > $corpus_home/train.en
+#unzip datum2017.zip
+#cd datum2017
+#cat Book1_cn.txt Book2_cn.txt Book3_cn.txt Book4_cn.txt Book5_cn.txt Book6_cn.txt Book7_cn.txt Book8_cn.txt Book9_cn.txt Book10_cn.txt > $corpus_home/train.zh
+#cat Book1_en.txt Book2_en.txt Book3_en.txt Book4_en.txt Book5_en.txt Book6_en.txt Book7_en.txt Book8_en.txt Book9_en.txt Book10_en.txt > $corpus_home/train.en
+unzip casict2015.zip
+cd casict2015
+mv casict2015_ch.txt $corpus_home/train.zh
+mv casict2015_en.txt $corpus_home/train.en
 
 echo "prepare corpus dev..."
 for year in 2017;
