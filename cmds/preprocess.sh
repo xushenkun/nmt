@@ -54,24 +54,28 @@ for prefix in newsdev2017 newstest2017
   $moses_scripts/recaser/truecase.perl -model $modles_home/truecase-model.en < $corpus_home/$prefix.tok.en > $corpus_home/$prefix.tc.en
  done
 
-if [ "$use_bpe" = "0" ]; then
-  echo "preprocess over!"
-  exit 0
-fi
-
 echo "make bpe for corpus..."
 $bpe_home/learn_joint_bpe_and_vocab.py -i $corpus_home/train.tc.zh $corpus_home/train.tc.en --write-vocabulary $corpus_home/vocab.zh $corpus_home/vocab.en -s $bpe_operations -o $modles_home/zhen.bpe
-for prefix in train newsdev2017 newstest2017
- do
-  $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.zh --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.zh > $corpus_home/$prefix.bpe.zh
-  $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.en --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.en > $corpus_home/$prefix.bpe.en
- done
 
-echo "make dictionary for corpus..."
-echo -e "<unk>\n<s>\n</s>" > "${corpus_home}/vocab.bpe"
-cat "${corpus_home}/train.bpe.zh" "${corpus_home}/train.bpe.en" | ${bpe_home}/get_vocab.py | cut -f1 -d ' ' >> "${corpus_home}/vocab.bpe"
-cp "${corpus_home}/vocab.bpe" "${corpus_home}/vocab.bpe.zh"
-cp "${corpus_home}/vocab.bpe" "${corpus_home}/vocab.bpe.en"
+echo "make vocab for corpus..."
+if [ "$use_bpe" = "1" ]; then
+  for prefix in train newsdev2017 newstest2017
+   do
+    $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.zh --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.zh > $corpus_home/$prefix.bpe.zh
+    $bpe_home/apply_bpe.py -c $modles_home/zhen.bpe --vocabulary $corpus_home/vocab.en --vocabulary-threshold $bpe_threshold < $corpus_home/$prefix.tc.en > $corpus_home/$prefix.bpe.en
+   done
+   
+  echo "make dictionary for corpus..."
+  echo -e "<unk>\n<s>\n</s>" > "${corpus_home}/vocab.bpe"
+  cat "${corpus_home}/train.bpe.zh" "${corpus_home}/train.bpe.en" | ${bpe_home}/get_vocab.py | cut -f1 -d ' ' >> "${corpus_home}/vocab.bpe"
+  cp "${corpus_home}/vocab.bpe" "${corpus_home}/vocab.bpe.zh"
+  cp "${corpus_home}/vocab.bpe" "${corpus_home}/vocab.bpe.en"
+else
+  echo "make dictionary for corpus..."
+  echo -e "<unk>\n<s>\n</s>" > "${corpus_home}/vocab.zh"
+  cat "${corpus_home}/train.tc.zh" | ${bpe_home}/get_vocab.py | cut -f1 -d ' ' >> "${corpus_home}/vocab.zh"
+  echo -e "<unk>\n<s>\n</s>" > "${corpus_home}/vocab.en"
+  cat "${corpus_home}/train.tc.en" | ${bpe_home}/get_vocab.py | cut -f1 -d ' ' >> "${corpus_home}/vocab.en"
+fi
 
 echo "preprocess over!"
-
