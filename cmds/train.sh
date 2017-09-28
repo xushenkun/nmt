@@ -1,6 +1,7 @@
 #!/bin/bash
 
-current_dir=`dirname $0`
+#current_dir=`dirname $0`
+current_dir=$(cd `dirname $0`;pwd)
 
 . $current_dir/env_vars
 

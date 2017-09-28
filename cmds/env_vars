@@ -9,7 +9,7 @@ device=cuda  #cpu #gpu2
 #language-pair
 src=en
 tgt=zh
-use_bpe="0"
+use_bpe="1"
 model_pair=${src}_${tgt}_bpe
 jieba_home=/application/search/tf/gnmt/jieba
 corpus_home=/application/search/tf/gnmt/corpus/casict2015/${model_pair}
